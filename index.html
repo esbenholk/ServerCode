@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BDDD BETA</title>
+</head>
+<style>
+
+    body{
+        background-color: black;
+        color: red;
+    }
+    .container{
+        display: flex;
+        flex-direction: column;        
+        position: fixed;
+        margin: 100px;
+        border: 2px red solid;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left:0;
+        right: 0;
+        border-radius: 40px;
+        padding: 30px;
+        align-items: center;
+       
+    }
+    #data{
+        
+        width: 90%;
+        text-align: center;
+        color: red;
+        background-color: transparent;
+        resize: none;
+        outline: none;
+        border-color: red;
+    
+    }
+    #data:focus{
+        border: 0px 0px 0px 5px;
+    }
+
+    #submit{
+        background-color: red;
+        color: white;
+        min-width: 300px;
+        min-height: 50px;
+        border-radius: 40px;
+        border-color: red;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+    }
+    .dot{
+        width: 15px;
+        height: 15px;
+        background-color: red;
+        border-radius: 50%;
+        position: fixed;
+    }
+    .top{
+        top: 50px;
+        left: 50%;
+    }
+    .bottom{
+        bottom: 50px;
+        left: 50%;
+    }
+    .left{
+        top: 50%;
+        left: 50px;
+    }
+    .right{
+        top: 50%;
+        right: 50px;
+    }
+    
+</style>
+<body>
+
+    <div class="dot top"></div>
+    <div class="dot bottom"></div>
+    <div class="dot left"></div>
+    <div class="dot right"></div>
+    
+    <div class="container">
+        <textarea id="data"></textarea>
+        <button id="submit">Submit</button>
+    </div>
+ 
+
+    <script type="module">
+        import { io } from "https://cdn.socket.io/4.4.1/socket.io.esm.min.js";
+      
+        const daddy_replies = ["give me more data... ", "you like that don't you, little slut", "good data...", "fuck yeah..."]
+        const sio = io();
+
+        const o = document.getElementById('output');
+
+		function log(line) {
+			o.innerHTML += line + "\n";
+			console.log(line);
+		}
+
+        function submit(){
+            let text = document.getElementById("data").value;
+            if(text == null  || text == ""){
+                text = "no data makes big data dom daddy a dull boy";
+            }
+            sio.emit("hello", text);
+
+
+            document.getElementById("data").value = daddy_replies[Math.floor(Math.random() * daddy_replies.length)];
+            console.log("submit button press");
+
+        }
+
+        const roomName = "bddd_dungeon";
+
+        document.getElementById("submit").addEventListener('click', submit);
+		
+		window.onload = function () {
+			// console.log("Starting test...");
+
+            // sio.emit("hello", "from onloadfucntion")
+			
+			sio.on('connect', () => {
+				sio.emit('KnockKnock');
+			});
+			
+			// sio.on('WhosThere', () => {
+			// 	log('RECEIVED a WhosThere event without payload data just as expected.');
+			// 	sio.emit('ItsMe', {
+			// 		version: 'FakeVersion'
+			// 	});
+			// });
+			
+			// sio.on('Welcome', (payload) => {
+			// 	log('SERVER: ' + payload);
+			// });
+			
+			// sio.on('TechData', (srv) => {
+			// 	log("Received the POD name from the server. Upadting UI. Oh! It's " + srv.timestamp + " by the way."); //we do not acually update ui in the test app
+			// });
+			
+			// sio.on('disconnect', () => {
+			// 	log('Disconnected from server.'); //we do not acually update ui in the test app
+			// 	sio.close();
+			// });
+		}
+
+
+
+      </script>
+</html>
