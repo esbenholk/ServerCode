@@ -14,12 +14,17 @@
 
 
 <style>
-
-    body{
-        background-color: #00FCFF;
-        color: black;
-        overflow: hidden;
+    #video{
+    position: fixed;
+    height: 100%;
+    left: 0;
+    right: 0;
+    top:0;
+    bottom: 0;
+    width: 100%;
+    object-fit: fill;
     }
+
     .container{
         display: flex;
         flex-direction: column;        
@@ -38,40 +43,169 @@
         
 
         border: 2px white solid;
-        -webkit-box-shadow: inset 0 0 0.75em 0.25em yellow,
-            0 0 0.75em 0.25em yellow;
-        -moz-box-shadow: inset 0 0 0.75em 0.25em yellow,
-            0 0 0.75em 0.25em yellow;
+        -webkit-box-shadow: inset 0 0 0.75em 0.25em rgb(0, 255, 47),
+            0 0 0.75em 0.25em rgb(0, 255, 47);
+        -moz-box-shadow: inset 0 0 0.75em 0.25em rgb(0, 255, 47),
+            0 0 0.75em 0.25em rgb(0, 255, 47);
 
-        box-shadow: inset 0 0 0.75em 0.25em yellow,
-            0 0 0.75em 0.25em yellow;
+        box-shadow: inset 0 0 0.75em 0.25em rgb(0, 255, 47),
+            0 0 0.75em 0.25em rgb(0, 255, 47);
             
     }
 
-
-    #submit{
-        background-color: pink;
-        color: #ffffff;
-        width: 100%;
-
-        font-family: 'Open Sans', bold;
-        min-height: 150px;
-        border-radius: 40px;
-        border-color: white;
-        font-size: 50px;
-
-
-        -webkit-box-shadow: inset 0 0 0.75em 0.25em yellow,
-            0 0 0.75em 0.25em yellow;
-        -moz-box-shadow: inset 0 0 0.75em 0.25em yellow,
-            0 0 0.75em 0.25em yellow;
-
-        box-shadow: inset 0 0 0.75em 0.25em yellow,
-            0 0 0.75em 0.25em yellow;
+.popup{
+  position: fixed;
+  width: 70%;
+  max-width: 700px;
+  max-height: 700px;
+  min-height: 400px;
+  background-color: #33ff00;
+  border-radius: 20px;
+  box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
+  -webkit-box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
+  -moz-box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
+  border: 2px solid white;
 
 
+}
+.popup .header{
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 30px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0;
+  background-color: #c3c3c3;
+  border-radius: 20px 20px 0 0;
 
-    }
+}
+.popup .header p{
+  position: relative;
+  margin-left: 10px;
+  color: white;
+
+}
+.content{
+    position: absolute;
+    top:0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+p{
+  margin: 0;
+  font-size: 15px;
+  color: #c3c3c3;
+}
+
+.button,
+h1,a{
+    font-size: 50px;
+   color: white;
+   font-family: sans-serif;
+
+}
+
+.button{
+  background-color: #FF88FF;
+  border-color: white;
+  word-wrap: break-word;
+  color: white;
+  height: 50%;
+  width: 70%;
+font-size: 50px;
+  border-radius: 20px;
+  box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
+  -webkit-box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
+  -moz-box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
+  border: 2px solid white;
+}
+
+
+.btn {
+  font-family: sans-serif;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2.8px;
+  background-color: #FF88FF;
+  border-color: white;
+  word-wrap: break-word;
+  color: white;
+  width: 70%;
+  max-height: 120px;
+font-size: 50px;
+  border-radius: 20px;
+  box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
+  -webkit-box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
+  -moz-box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
+  border: 2px solid white;
+  padding: 15px 50px;
+  transition: 0.6s cubic-bezier(0.01, 1.69, 0.99, 0.94);
+}
+
+.btn--clicked {
+  transition: 0.6s cubic-bezier(0.01, 1.69, 0.99, 0.94);
+  padding: 15px 2px;
+  width: 50px;
+  color: transparent;
+  z-index: -10;
+}
+
+.color {
+  display: block;
+  width: 0;
+  height: 0;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  transition: 0.8s ease;
+  border-radius: 50%;
+  background-color: transparent;
+  box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
+  -webkit-box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
+  -moz-box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
+  display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.expanded {
+  width: 200%;
+  padding-bottom: 200%;
+  height: auto;
+}
+
+.color--blue {
+  background-color: blue;
+  transition-delay: 0.25s;
+}
+
+.color--orange {
+  background-color: #FF88FF;
+  transition-delay: 0.5s;
+}
+
+.color--green {
+  background-color: #41FF9F;
+  transition-delay: 0.75s;
+}
+
+.color--white {
+  background-color: rgba(0,255,25,1);
+  transition-delay: 1s;
+}
 
     #submit_container{
         position: fixed;
@@ -128,16 +262,38 @@
         top: 50%;
         right: 50px;
     }
+
+    .thanku{
+        display: none;
+    }
     
 </style>
 <body>
 
-
+    <video autoPlay loop muted id="video">
+        <source src="http://localhost:8123/aimix.mp4" type="video/mp4"></source>
+    </video>
     
     <div class="container">
+        <div class='popup'>
+            <div class='header'><p>X</p></div>
+            <div class='content'>
+              <!-- <button class="button" id="submit">INJECT RANDOMNESS</button> -->
 
-        <button id="submit">INJECT RANDOMNESS</button>
+              <a class="btn"id="submit" href="" title="">INJECT RANDOMNESS</a><span class="color color--blue" data-value="1"></span><span class="color color--orange" data-value="1"></span><span class="color color--green" data-value="1"></span><span class="color color--white" data-value="1"></span>
+            </div>
+        </div>
+    </div>
 
+    <div class="container thanku">
+        <div class='popup'>
+            <div class='content'>
+              <!-- <button class="button" id="submit">INJECT RANDOMNESS</button> -->
+            <div>  
+                <h1>THANK U FOR UR INJECTION</h1>
+                <h1>plz wait 4 the button to reappear (15sec ish)</h1></div>
+            </div>
+        </div>
     </div>
  
 
@@ -151,6 +307,27 @@
         const sio = io();
 
         const o = document.getElementById('output');
+
+        const button = document.querySelector('.btn');
+        button.addEventListener('click',(e)=>{
+            e.preventDefault();
+            button.classList.add('btn--clicked');
+            
+            setTimeout(()=>{document.querySelector('.thanku').style.display = "flex"}, 700);
+            document.querySelectorAll('span').forEach((element)=>{element.classList.add('expanded')})
+            
+            
+            
+            
+            /* 
+        ---------------------------------------
+        just to reset without having to refresh..
+        --------------------------------*/
+            setTimeout(()=>{button.classList.remove("btn--clicked")},15000);
+            setTimeout(()=>{document.querySelector('.thanku').style.display = "none"},15000);
+
+   
+            setTimeout(()=>{document.querySelectorAll('span').forEach((element)=>{element.classList.remove('expanded')})},15000)});
 
         function submit(){
             let text = "randomise content";
