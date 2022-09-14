@@ -82,11 +82,11 @@ io.on('connection', (socket) => {
 	});
 
   socket.on("hello", (data) => {
-		console.log("someone says hi", socket.id);
+		console.log("someone says hi", socket.id, data);
 
     io.to(GameSocketID).emit('hello', data);
 
-    socket.emit("hello", "world");
+    socket.emit("hello", data);
 	});
 	socket.on('Goodbye', async (data) => {
 		console.log('[' + (new Date()).toUTCString() + '] Client said "' + data + '" - The server will disconnect the client in five seconds. You can now abort the process (and restart it afterwards) to see an auto reconnect attempt.');

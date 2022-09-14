@@ -94,10 +94,10 @@
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-content: center;
-    text-align: center;
     align-items: center;
+
 }
 
 p{
@@ -111,26 +111,35 @@ h1,a{
     font-size: 50px;
    color: white;
    font-family: sans-serif;
+   text-align: center;
 
 }
 
-.button{
-  background-color: #FF88FF;
+input{
+  position: relative;
+  font-family: sans-serif;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2.8px;
+  background-color: white;
   border-color: white;
   word-wrap: break-word;
-  color: white;
-  height: 50%;
+  color: BLACK;
   width: 70%;
-font-size: 50px;
+  max-height: 120px;
+  font-size: 20px;
   border-radius: 20px;
   box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
   -webkit-box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
   -moz-box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
   border: 2px solid white;
+  padding: 15px 50px;
+  transition: 0.6s cubic-bezier(0.01, 1.69, 0.99, 0.94);
 }
 
-
 .btn {
+  position: relative;
   font-family: sans-serif;
   color: white;
   text-decoration: none;
@@ -144,9 +153,10 @@ font-size: 50px;
   max-height: 120px;
 font-size: 50px;
   border-radius: 20px;
-  box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
+  text-align: center;
+  /* box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
   -webkit-box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
-  -moz-box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
+  -moz-box-shadow: -1px 0px 86px 17px rgba(0,255,25,1); */
   border: 2px solid white;
   padding: 15px 50px;
   transition: 0.6s cubic-bezier(0.01, 1.69, 0.99, 0.94);
@@ -171,9 +181,7 @@ font-size: 50px;
   transition: 0.8s ease;
   border-radius: 50%;
   background-color: transparent;
-  box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
-  -webkit-box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
-  -moz-box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
+
   display: flex;
     justify-content: center;
     align-content: center;
@@ -190,6 +198,10 @@ font-size: 50px;
 .color--blue {
   background-color: blue;
   transition-delay: 0.25s;
+  box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
+  -webkit-box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
+  -moz-box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
+
 }
 
 .color--orange {
@@ -205,6 +217,9 @@ font-size: 50px;
 .color--white {
   background-color: rgba(0,255,25,1);
   transition-delay: 1s;
+  box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
+  -webkit-box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
+  -moz-box-shadow: -1px 0px 86px 17px rgba(0,255,25,1);
 }
 
     #submit_container{
@@ -279,7 +294,7 @@ font-size: 50px;
             <div class='header'><p>X</p></div>
             <div class='content'>
               <!-- <button class="button" id="submit">INJECT RANDOMNESS</button> -->
-
+              <input type="text" id="name" placeholder="TELL ME UR NAME"> </input>
               <a class="btn"id="submit" href="" title="">INJECT RANDOMNESS</a><span class="color color--blue" data-value="1"></span><span class="color color--orange" data-value="1"></span><span class="color color--green" data-value="1"></span><span class="color color--white" data-value="1"></span>
             </div>
         </div>
@@ -289,10 +304,10 @@ font-size: 50px;
         <div class='popup'>
             <div class='content'>
               <!-- <button class="button" id="submit">INJECT RANDOMNESS</button> -->
-            <div>  
+        
                 <h1>THANK U FOR UR INJECTION</h1>
                 <h1>plz wait 4 the button to reappear (15sec ish)</h1></div>
-            </div>
+        
         </div>
     </div>
  
@@ -324,13 +339,13 @@ font-size: 50px;
         just to reset without having to refresh..
         --------------------------------*/
             setTimeout(()=>{button.classList.remove("btn--clicked")},15000);
-            setTimeout(()=>{document.querySelector('.thanku').style.display = "none"},15000);
+            setTimeout(()=>{document.querySelector('.thanku').style.display = "none"},15500);
 
    
-            setTimeout(()=>{document.querySelectorAll('span').forEach((element)=>{element.classList.remove('expanded')})},15000)});
+            setTimeout(()=>{document.querySelectorAll('span').forEach((element)=>{element.classList.remove('expanded')})},14000)});
 
         function submit(){
-            let text = "randomise content";
+            let text = document.getElementById("name").value;
             if(text == null  || text == ""){
                 text = "no data makes big data dom daddy a dull boy";
             }
@@ -347,6 +362,10 @@ font-size: 50px;
             // sio.emit("hello", "from onloadfucntion")
 			
 			sio.on('connect', () => {
+				sio.emit('KnockKnock');
+			});
+
+      sio.on('hello', () => {
 				sio.emit('KnockKnock');
 			});
 			
