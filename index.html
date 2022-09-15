@@ -347,7 +347,7 @@ font-size: 50px;
         function submit(){
             let text = document.getElementById("name").value;
             if(text == null  || text == ""){
-                text = "no data makes big data dom daddy a dull boy";
+                text = "[default user]";
             }
             sio.emit("hello", text);
         }
